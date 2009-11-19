@@ -73,7 +73,7 @@ module Cucumber
       
       def yaml_database_settings
         return {} unless File.exist?(@database_file)
-        
+        puts @database_file
         YAML.load open(@database_file)
       end
       
@@ -84,7 +84,7 @@ module Cucumber
           :username => @username,
           :password => @password,
           :host     => @host
-        }.merge yaml_database_settings
+        }.merge yaml_database_settings.symbolize_keys
       end
       
       def configure_active_record
